@@ -6,6 +6,7 @@ on:
     # 어떤 브랜치를 감지할지
     branches:
       - main
+      - develop
   # 워크플로우에서 어떤 일을 진행 할지
 jobs:
   # 작업의 이름
