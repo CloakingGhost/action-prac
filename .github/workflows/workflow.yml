@@ -1,0 +1,20 @@
+name: Enter the Workflow's name
+
+# 언제 동작할지
+on:
+  push:
+    # 어떤 브랜치를 감지할지
+    branches:
+      - main
+  # 워크플로우에서 어떤 일을 진행 할지
+jobs:
+  # 작업의 이름
+  init:
+    # 실행 환경
+    runs-on: ubuntu-24.04
+
+    # 실제 작업이 실행 되는 곳
+    steps:
+      # 작업 이름
+      - name: Print Hello world
+        run: echo 'Welcome to Coding World'
