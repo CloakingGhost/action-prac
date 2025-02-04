@@ -20,7 +20,7 @@ jobs:
       - name: Print Hello world
         run: echo 'Welcome to Coding World'
   # 작업의 이름
-    set-env:
+    setenv:
       runs-on: ubuntu-24.04
       steps:
         - name: Print Secret
