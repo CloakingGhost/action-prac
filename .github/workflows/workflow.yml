@@ -19,3 +19,9 @@ jobs:
       # 작업 이름
       - name: Print Hello world
         run: echo 'Welcome to Coding World'
+  # 작업의 이름
+    set-env:
+      runs-on: ubuntu-24.04
+      steps:
+        - name: Print Secret
+          run: echo '${{secrets.SAMPLE_KEY}}'
