@@ -60,7 +60,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          source: "docker-compose,.env"
+          source: "docker-compose.yml,.env"
           target: "~/work-directory"
 
         # SSH로 EC2에 접근
