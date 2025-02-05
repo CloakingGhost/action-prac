@@ -37,3 +37,17 @@ jobs:
       # 원격 저장소에 있는 파일 EC2로 복사
       - name: copy file to remote server
         run: scp -P ${{ secrets.SSH_PORT }} README.md ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:~/ 
+
+      # ssh 명령어의 가독성을 높히는 도구
+      - name: Run remote command test
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          # SSH 연결 이후 실행할 명령어 목록
+          script: |
+            touch 'hello-EC2-1.txt'
+            touch 'hello-EC2-2.txt'
+            touch 'hello-EC2-3.txt'
