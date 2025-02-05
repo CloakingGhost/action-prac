@@ -59,7 +59,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          post: ${{ secrets.SSH_POST }}
+          port: ${{ secrets.SSH_PORT }}
           source: "docker-compose,.env"
           target: "~/work-directory"
 
@@ -72,8 +72,9 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          post: ${{ secrets.SSH_POST }}
+          port: ${{ secrets.SSH_PORT }}
           script: |
+            docker rm -f $(docker ps -aq)
             cd ~/work-directory
             docker-compose pull
             docker-compose down
