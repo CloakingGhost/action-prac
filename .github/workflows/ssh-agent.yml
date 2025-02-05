@@ -48,19 +48,21 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           # SSH 연결 이후 실행할 명령어 목록
           script: |
-            touch 'hello-EC2-1.txt'
-            touch 'hello-EC2-2.txt'
-            touch 'hello-EC2-3.txt'
+            mkdir hello-dir
+            cd hello-dir
+            touch hello-EC2-1.txt
+            touch hello-EC2-2.txt
+            touch hello-EC2-3.txt
 
       # scp 명령의 가독성을 향상시키는 도구
       - name: Copy README.md file
-          uses: appleboy/scp-action@v0.1.7
-          with:
-            host: ${{ secrets.SSH_HOST}}
-            username: ${{ secrets.SSH_USERNAME}}
-            key: ${{ secrets.SSH_PRIVATE_KEY }}
-            port: ${{ secrets.SSH_PORT}}
-            # 복사할 파일 이름, 여러개의 파일을 복사할 때는 쉼표(,)로 파일 이름을 구분한다
-            source: "README.md" 
-            # 원격 서버에 복사될 위치
-            target: "~/"
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          # 복사할 파일 이름, 여러개의 파일을 복사할 때는 쉼표(,)로 파일 이름을 구분한다
+          source: "README.md" 
+          # 원격 서버에 복사될 위치
+          target: "~/"
