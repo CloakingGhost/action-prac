@@ -36,4 +36,4 @@ jobs:
       
       # 원격 저장소에 있는 파일 EC2로 복사
       - name: copy file to remote server
-        run: scp -p ${{ secrets.SSH_PORT }} README.md ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:~/ 
+        run: scp -P ${{ secrets.SSH_PORT }} README.md ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:~/ 
