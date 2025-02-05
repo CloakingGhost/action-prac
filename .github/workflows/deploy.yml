@@ -10,7 +10,7 @@ on:
 
 jobs:
     # 작업 이름
-  ssh-agent:
+  deploy:
       # 실행 환경
     runs-on: ubuntu-24.04
 
@@ -74,7 +74,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            docker rm -f $(docker ps -aq)
+            # docker rm -f $(docker ps -aq)
             cd ~/work-directory
             docker-compose pull
             docker-compose down
