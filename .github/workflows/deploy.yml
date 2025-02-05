@@ -30,6 +30,7 @@ jobs:
       - name: Add Remote Server Fingerprint to Known Hosts
         run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts || true
 
+      # 깃허브 액션 워크스페이스에 저장한 환경변수로 .env 파일 생성
       - name: Create .env file
         run: |
           echo "DATABASE_HOST=${{ secrets.DATABASE_HOST }}" >> .env
@@ -49,3 +50,31 @@ jobs:
 
       - name: Docker Image Push
         run: docker compose push
+
+        # EC2에 docker-compose.yml, .env 복사
+
+      - name: Copy .env / docker-compose.yml
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          post: ${{ secrets.SSH_POST }}
+          source: "docker-compose,.env"
+          target: "~/work-directory"
+
+        # SSH로 EC2에 접근
+        # 복사한 2개의 파일을 실행 시키기 위함
+
+      - name: Pull Image & Up Container
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          post: ${{ secrets.SSH_POST }}
+          script: |
+            cd ~/work-directory
+            docker-compose pull
+            docker-compose up -d
+    
