@@ -28,21 +28,7 @@ jobs:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           title: Deploy Start!!
 
-        # 액션 종료 알림 메세지
-      - name: End Message - Success
-        uses: sarisia/actions-status-discord@v1
-        if: success()
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          title: Deploy Success!!
 
-        # 액션 실패 알림 메세지
-      - name: End Message - Fail
-        uses: sarisia/actions-status-discord@v1
-        if: failure()
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          title: Deploy Fail!!
 
 
 
@@ -107,4 +93,23 @@ jobs:
             sudo docker-compose pull
             sudo docker-compose down
             sudo docker-compose up -d
+
+
+
+
+        # 액션 종료 알림 메세지
+      - name: End Message - Success
+        uses: sarisia/actions-status-discord@v1
+        if: success()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: Deploy Success!!
+
+        # 액션 실패 알림 메세지
+      - name: End Message - Fail
+        uses: sarisia/actions-status-discord@v1
+        if: failure()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: Deploy Fail!!
     
