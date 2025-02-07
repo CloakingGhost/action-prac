@@ -35,7 +35,7 @@ services:
       
       cache_from:
         # dest: 캐시가 저장된 경로 == 캐시를 불러올 경로
-        - type=local,src=/tmp/.buildx-cache/backend
+        - type=local,dest=/tmp/.buildx-cache/backend
         
 
     image: cloakingghost/backend:latest
