@@ -55,9 +55,9 @@ services:
     build:
       context: ./frontend
       cache_to: 
-        - type=local, dest=/tmp/.buildx-cache/backend, mode=max
+        - type=local, dest=/tmp/.buildx-cache/frontend, mode=max
       cache_from: 
-        - type=local, src=/tmp/.buildx-cache/backend
+        - type=local, src=/tmp/.buildx-cache/frontend
       args:
         VITE_API_URL: ${VITE_API_URL}
     image: cloakingghost/frontend:latest
