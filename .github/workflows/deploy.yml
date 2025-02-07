@@ -28,7 +28,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          title: Deploy Start!!
+          title: 시작한다. 배포.
       
       # 캐시 저장 설정을 위한 actions(라이브러리)
       - name: Cache Docker Image Layer
@@ -37,7 +37,7 @@ jobs:
         with:
           path: /tmp/.buildx-cache
           # cache를 구분하기 위한 식별자
-          # 같은 이름으로 하면 덮어 씌워짐
+          # 같은 이름으로 하면 캐싱이 유지됨
           key: docker-${{ github.sha }}
 
 
@@ -71,13 +71,14 @@ jobs:
       - name: Set up Docker Buildkit
         # setup-buildx-action
           # Workspace의 Buildkit 엔진을 설치하는 action
+          # buildx: Buildkit 관련 명령어 모음
         # buildx = Buildkit
         # 캐시를 내가 제어 하기위한 라이브러리
         # 캐시는 원래 도커가 관리하는데 이것을 직접 내가 관리하여 깃허브에 caches로 데이터를 보내기 위함
         # 도커에는 이런기능이 없어서 라이브러리를 설치
         uses: docker/setup-buildx-action@v3
 
-      # Buildkit Engine Builder(이미지 빌드를 도와주는 도구: 이미지 빌드해 줌) 생성
+      # Buildkit Engine Builder(이미지를 빌드하는 도구: 이미지 빌드해 줌) 생성
       # 기존 Docker Builder : Cache 파일 저장&불러오기 경로 제어 불가
       # 기존 Docker Builder 대신 Buildkit으로 대체하는 과정
       - name: Create Buildkit Builder
@@ -99,7 +100,7 @@ jobs:
       - name: Docker Image Push
         run: docker compose push
         
-
+        # SSH로 EC2에 접근
         # EC2에 docker-compose.yml, .env 복사
 
       - name: Copy .env / docker-compose.yml
@@ -138,7 +139,7 @@ jobs:
         if: success()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          title: Deploy Success!!
+          title: 성공했다. 배포.
 
         # 액션 실패 알림 메세지
       - name: End Message - Fail
@@ -146,5 +147,5 @@ jobs:
         if: failure()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          title: Deploy Fail!!
+          title: 실패했다. 배포.
     
