@@ -20,7 +20,7 @@ pipeline {
                         """,
                         link: env.BUILD_URL, 
                         title: "${env.JOB_NAME} : ${currentBuild.displayName} 시작", 
-                        webhookURL: "$discord_webhook"
+                        webhookURL: $discord_webhook
 							      }
 					      }
 				    }
