@@ -21,9 +21,17 @@ pipeline {
 					// 복습 ) 권한 : 읽기 4 : 쓰기 2 : 실행 1
 					sh 'chmod 664 .env'
 
-					sh 'pwd'
 					}
 				}
+			}
+		}
+	}
+	
+	stage("Docker Image Build & Container Run") {
+		steps {
+			script {
+				sh 'docker compose build'
+				sh 'docker compse up -d'
 			}
 		}
 	}
