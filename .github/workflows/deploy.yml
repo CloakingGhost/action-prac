@@ -22,12 +22,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
 
-      # 디스코드로 메세지 전송
+      # 디스코드로 메세지 전송 (Channel 1)
       - name: Start Message
         # 라이브러리 개발자/라이브러리 이름@버전
         uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: 시작한다. 배포.
+
+
+      # 디스코드로 메세지 전송 (Channel 2)
+      - name: Start Message
+        # 라이브러리 개발자/라이브러리 이름@버전
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK_JAEHYEON }}
           title: 시작한다. 배포.
       
       # 캐시 저장 설정을 위한 actions(라이브러리)
@@ -126,14 +135,14 @@ jobs:
           script: |
             # docker rm -f $(docker ps -aq)
             cd ~/work-directory
-            sudo docker-compose pull
-            sudo docker-compose down
-            sudo docker-compose up -d
+            sudo docker compose pull
+            sudo docker compose down
+            sudo docker compose up -d
 
 
 
 
-        # 액션 종료 알림 메세지
+        # 액션 종료 알림 메세지 (Channel 1)
       - name: End Message - Success
         uses: sarisia/actions-status-discord@v1
         if: success()
@@ -141,11 +150,27 @@ jobs:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           title: 성공했다. 배포.
 
-        # 액션 실패 알림 메세지
+        # 액션 종료 알림 메세지 (Channel 2)
+      - name: End Message - Success
+        uses: sarisia/actions-status-discord@v1
+        if: success()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK_JAEHYEON }}
+          title: 성공했다. 배포.
+
+        # 액션 실패 알림 메세지  (Channel 1)
       - name: End Message - Fail
         uses: sarisia/actions-status-discord@v1
         if: failure()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: 실패했다. 배포.
+
+        # 액션 실패 알림 메세지  (Channel 2)
+      - name: End Message - Fail
+        uses: sarisia/actions-status-discord@v1
+        if: failure()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK_JAEHYEON }}
           title: 실패했다. 배포.
     

@@ -48,11 +48,16 @@ pipeline {
                 }
             }
         }
-    
+        stage("Dpcker Image Remove") {
+          steps {
+            script {
+                    sh 'docker image prune -f'
+            }
+          }
+        }
         stage("Docker Image Build & Container Run") {
             steps {
                 script {
-                    sh 'docker image prune -f'
 
                     sh 'docker compose build'
 
