@@ -52,6 +52,8 @@ pipeline {
         stage("Docker Image Build & Container Run") {
             steps {
                 script {
+                    sh 'docker image prune -f'
+
                     sh 'docker compose build'
 
                     sh 'docker compose down'
