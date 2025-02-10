@@ -61,7 +61,6 @@ pipeline {
         }
     }
 
-
     post {
         success {
             withCredentials([string(credentialsId: 'discord-webhook', variable: 'discord_webhook')]) {
