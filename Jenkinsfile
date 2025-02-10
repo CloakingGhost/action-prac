@@ -55,7 +55,7 @@ pipeline {
                 script {
                     sh 'docker compose build'
                     sh 'docker compose down'
-                    sh 'docker compse up -d'
+                    sh 'docker compose up -d'
                 }
             }
         }
