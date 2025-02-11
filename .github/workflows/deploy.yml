@@ -74,6 +74,8 @@ jobs:
           echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
           echo "MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> .env
           echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env
+          echo "BACKEND_SERVER_URL=${{ secrets.BACKEND_SERVER_URL }}" >> .env
+          echo "DOMAIN=${{ secrets.DOMAIN }}" >> .env
       
       # 이미지 빌드 전에 수행해야함
       # 도커 Buildkit 엔진 설정 action
