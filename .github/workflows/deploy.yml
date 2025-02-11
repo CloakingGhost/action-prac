@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v4.2.2
 
       # 디스코드로 메세지 전송 (Channel 1)
-      - name: Start Message
+      - name: Start Message (Channel 1)
         # 라이브러리 개발자/라이브러리 이름@버전
         uses: sarisia/actions-status-discord@v1
         with:
@@ -32,7 +32,7 @@ jobs:
 
 
       # 디스코드로 메세지 전송 (Channel 2)
-      - name: Start Message
+      - name: Start Message (Channel 2)
         # 라이브러리 개발자/라이브러리 이름@버전
         uses: sarisia/actions-status-discord@v1
         with:
@@ -143,7 +143,7 @@ jobs:
 
 
         # 액션 종료 알림 메세지 (Channel 1)
-      - name: End Message - Success
+      - name: End Message - Success (Channel 1)
         uses: sarisia/actions-status-discord@v1
         if: success()
         with:
@@ -151,23 +151,23 @@ jobs:
           title: 성공했다. 배포.
 
         # 액션 종료 알림 메세지 (Channel 2)
-      - name: End Message - Success
+      - name: End Message - Success (Channel 2)
         uses: sarisia/actions-status-discord@v1
         if: success()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK_JAEHYEON }}
           title: 성공했다. 배포.
 
-        # 액션 실패 알림 메세지  (Channel 1)
-      - name: End Message - Fail
+        # 액션 실패 알림 메세지 (Channel 1)
+      - name: End Message - Fail (Channel 1)
         uses: sarisia/actions-status-discord@v1
         if: failure()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           title: 실패했다. 배포.
 
-        # 액션 실패 알림 메세지  (Channel 2)
-      - name: End Message - Fail
+        # 액션 실패 알림 메세지 (Channel 2)
+      - name: End Message - Fail (Channel 2)
         uses: sarisia/actions-status-discord@v1
         if: failure()
         with:
