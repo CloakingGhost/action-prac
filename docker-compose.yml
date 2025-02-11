@@ -65,7 +65,7 @@ services:
       - backend-connect
     volumes:
       - /etc/letsencrypt/live/3.36.72.177.sslip.io/privkey.pem:/etc/letsencrypt/live/3.36.72.177.sslip.io/privkey.pem:ro
-      - /etc/letsencrypt/live/3.36.72.177.sslip.io/fullchain.pem:/etc/letsencrypt/live/3.36.72.177.sslip.io/fullchain:ro
+      - /etc/letsencrypt/live/3.36.72.177.sslip.io/fullchain.pem:/etc/letsencrypt/live/3.36.72.177.sslip.io/fullchain.pem:ro
     depends_on:
       - backend
       - db
