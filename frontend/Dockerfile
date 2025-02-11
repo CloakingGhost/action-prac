@@ -12,8 +12,8 @@ RUN npm run build
 FROM nginx:mainline-alpine-slim
 COPY --from=build /app/dist /usr/share/nginx/html
 # 모듈화된 서버 설정 파일들 복사
-# COPY ./conf.d /etc/nginx/conf.d
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY ./conf.d /etc/nginx/conf.d
+# COPY nginx.conf /etc/nginx/nginx.conf
 COPY ./templates /etc/nginx/templates
 # 443 추가
 EXPOSE 80 443
